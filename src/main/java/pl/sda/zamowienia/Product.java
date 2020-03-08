@@ -1,5 +1,9 @@
 package pl.sda.zamowienia;
 
+import pl.sda.zamowienia.exceptions.SmallLetterException;
+
+import java.util.regex.Pattern;
+
 public class Product {
     private String name;
     private double price;
@@ -19,8 +23,15 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name) throws SmallLetterException {
+        if (!this.checkName(name)) {
+            throw new SmallLetterException("Proszę podawać nazwy produku z dużych liter.");
+        } else
+            this.name = name;
+    }
+
+    public boolean checkName(String name){
+        return name ; *// TODO: 08.03.2020 dokończyć, wykorzystując tablice ASCII 
     }
 
     public double getPrice() {
